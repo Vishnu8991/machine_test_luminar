@@ -14,16 +14,25 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  bool _obscureText = true;
+
+  bool _isPasswordVisible = false;
+
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
+
+  @override
+  void dispose() {
+    email.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final logincontroller = Provider.of<LoginController>(
       context,
       listen: false,
     );
-
-    final TextEditingController email = TextEditingController();
-    final TextEditingController password = TextEditingController();
 
     return Scaffold(
       body: Consumer<LoginController>(
@@ -107,7 +116,7 @@ class _LoginViewState extends State<LoginView> {
                               child: TextFormField(
                                 style: TextStyle(color: Colors.white),
                                 controller: password,
-                                obscureText: true,
+                                obscureText: !_isPasswordVisible,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   labelText: "Password",
@@ -116,17 +125,19 @@ class _LoginViewState extends State<LoginView> {
                                       color: Colors.white60),
                                   prefixIcon:
                                       Icon(Icons.key_off, color: Colors.white),
-                                  // suffixIcon: IconButton(
-                                  //   icon: Icon(
-                                  //     _obscureText ? Icons.visibility_off : Icons.visibility,
-                                  //     color: Colors.white38,
-                                  //   ),
-                                  //   onPressed: () {
-                                  //      setState(() {
-                                  //   _obscureText = !_obscureText;
-                                  // });
-                                  //   },
-                                  // )
+                                       suffixIcon: IconButton( // Add suffix icon
+                                    icon: Icon(
+                                      _isPasswordVisible
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                      color: Colors.white60,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        _isPasswordVisible = !_isPasswordVisible;
+                                      });
+                                    },
+                                  ),
                                 ),
                               ),
                             )

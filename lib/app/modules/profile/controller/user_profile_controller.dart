@@ -7,11 +7,10 @@ import '../../../core/dio/dio_authorized.dart';
 import '../../../utils/common_dialog.dart';
 import '../model/user_profile_model.dart';
 
-class UserProfileController extends ChangeNotifier{
-
+class UserProfileController extends ChangeNotifier {
   UserProfileModel? userProfileModel;
 
-    bool isEditing = false;
+  bool isEditing = false;
 
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -20,7 +19,7 @@ class UserProfileController extends ChangeNotifier{
 
   void fetchUserDetails(BuildContext context) async {
     try {
-      // CommonDialog.showLoadingDialog(context);
+      CommonDialog.showLoadingDialog(context);
       final client = await DioUtilAuthorized.createApiClient();
       final result = await client.userProfile();
 
@@ -30,9 +29,8 @@ class UserProfileController extends ChangeNotifier{
       notifyListeners();
     } catch (e) {
       log("Error fetching data: $e");
-    }
-    finally {
-      // CommonDialog.closeLoadingDialog(context);
+    } finally {
+      CommonDialog.closeLoadingDialog(context);
     }
   }
 
@@ -63,7 +61,7 @@ class UserProfileController extends ChangeNotifier{
     try {
       CommonDialog.showLoadingDialog(context);
       final client = await DioUtilAuthorized.createApiClient();
-      
+
       final result = await client.updateUserProfile(
         fullNameController.text.trim(),
         emailController.text.trim(),
@@ -74,24 +72,18 @@ class UserProfileController extends ChangeNotifier{
       if (result.status == "success") {
         userProfileModel = result;
         isEditing = false;
-        
+
         // Show success message
 
         AppMessage.showMessage(
           backgroundColor: Colors.green,
           text: 'Profile updated successfully!',
         );
-        // ScaffoldMessenger.of(context).showSnackBar(
-        //   const SnackBar(
-        //     content: Text('Profile updated successfully!'),
-        //     backgroundColor: Colors.green,
-        //   ),
-        // );
       }
       notifyListeners();
     } catch (e) {
       log("Error updating profile: $e");
-      
+
       // Show error message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -112,6 +104,4 @@ class UserProfileController extends ChangeNotifier{
     whatsappController.dispose();
     super.dispose();
   }
-
-
 }

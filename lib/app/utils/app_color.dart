@@ -17,6 +17,4 @@ class AppColors {
   static Color appGreenColor = const Color(0xff5cdb5c);
   static Color appRed = const Color(0xffff4500);
   static Color appBar = const Color(0xff00809D);
-
-  // static Color kNewPrimary = const Color(0XFFCA7CD8);
 }

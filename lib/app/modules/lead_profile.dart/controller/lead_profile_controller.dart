@@ -41,7 +41,6 @@ class LeadProfileController extends ChangeNotifier {
     }
   }
 
-  // Method to clear the current lead profile
   void clearProfile() {
     _leadProfile = null;
     _error = null;

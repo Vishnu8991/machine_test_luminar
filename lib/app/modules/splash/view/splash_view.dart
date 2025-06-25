@@ -67,17 +67,16 @@ class _SplashScreenState extends State<SplashScreen>
         children: [
           Positioned.fill(
             child: Container(
-              color: Colors.black.withOpacity(0.5), // Adjust opacity here
+              color: Colors.black.withOpacity(0.5),
             ),
           ),
-          // Animated Text
           Align(
           alignment: Alignment.center,
           child: SlideTransition(
             position: _slideAnimation,
             child: Container(
               padding: const EdgeInsets.all(15),
-              height: 150,
+              height: 110,
               width: double.infinity,
               child: Lottie.asset(
                 'assets/image/Clock Loading.json',

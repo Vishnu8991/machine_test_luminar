@@ -127,11 +127,9 @@ class _LeadProfileState extends State<LeadProfile> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header Card
             _buildHeaderCard(lead),
             const SizedBox(height: 16),
             
-            // Contact Information
             _buildSectionCard(
               title: 'Contact Information',
               children: [
@@ -157,7 +155,6 @@ class _LeadProfileState extends State<LeadProfile> {
             ),
             const SizedBox(height: 7),
 
-            // Follow-up Information
             _buildSectionCard(
               title: 'Follow-up Information',
               children: [
@@ -171,7 +168,6 @@ class _LeadProfileState extends State<LeadProfile> {
             ),
             const SizedBox(height: 7),
 
-            // Counselor Information
             if (lead.counselorDetails != null)
               _buildSectionCard(
                 title: 'Counselor Information',
@@ -185,7 +181,6 @@ class _LeadProfileState extends State<LeadProfile> {
               ),
             const SizedBox(height: 7),
 
-            // Additional Information
             _buildSectionCard(
               title: 'Additional Information',
               children: [
@@ -333,7 +328,6 @@ class _LeadProfileState extends State<LeadProfile> {
   Color _getStatusColor(String? colorString) {
     if (colorString == null) return Colors.grey;
     try {
-      // Remove # if present and add FF for full opacity
       String cleanColor = colorString.replaceFirst('#', '');
       if (cleanColor.length == 6) {
         cleanColor = 'FF$cleanColor';

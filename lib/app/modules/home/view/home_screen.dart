@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                           : null,
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: AppColors.lightBackground,
                       hintText: 'Search by name, phone, email',
                       hintStyle: const TextStyle(color: Colors.grey),
                       contentPadding: const EdgeInsets.symmetric(
